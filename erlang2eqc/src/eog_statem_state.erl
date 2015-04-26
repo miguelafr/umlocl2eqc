@@ -867,6 +867,9 @@ filter([{expression, "VariableExp"} | _Data], _StateVariablesTypes) ->
 filter([{expression, "UndefinedLiteralExp"} | _Data], _StateVariablesTypes) -> 
     [];
 
+filter(Expr = [{expression, "BooleanLiteralExp"} | Data], StateVariablesTypes) ->
+    Expr;
+
 filter([], _StateVariablesTypes) ->
     [].
 
@@ -1001,6 +1004,10 @@ get_state_variable_types_from_constraints([{expression, "UndefinedLiteralExp"} |
     Result;
 
 get_state_variable_types_from_constraints([{expression, "IteratorExpImpl"} | _Data],
+                                          _StateVariables, _Classes, Result) ->
+    Result;
+
+get_state_variable_types_from_constraints([{expression, "BooleanLiteralExp"} | _Data],
                                           _StateVariables, _Classes, Result) ->
     Result;
 
