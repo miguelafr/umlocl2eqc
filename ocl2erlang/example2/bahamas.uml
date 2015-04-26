@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_i4xr4a1mEeCXWKG3D3fFog">
+  <packagedElement xmi:type="uml:Class" xmi:id="_bX5WAM80EeCAFt3T7kTr9Q" name="AssetFacade">
+    <ownedAttribute xmi:id="_2DvJsM84EeCAFt3T7kTr9Q" name="assets" type="_iFf2cM80EeCAFt3T7kTr9Q">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6R3-EM84EeCAFt3T7kTr9Q" value="*"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_409UIM84EeCAFt3T7kTr9Q"/>
+    </ownedAttribute>
+    <ownedOperation xmi:id="_1sgSQM80EeCAFt3T7kTr9Q" name="create">
+      <ownedParameter xmi:id="_33lpwM80EeCAFt3T7kTr9Q" name="asset" type="_iFf2cM80EeCAFt3T7kTr9Q"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_7T8b4M80EeCAFt3T7kTr9Q" name="delete">
+      <ownedParameter xmi:id="_9Bj0QM80EeCAFt3T7kTr9Q" name="assetId">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_bGnjUM81EeCAFt3T7kTr9Q" name="findAllAssets">
+      <ownedParameter xmi:id="_nvK_QM81EeCAFt3T7kTr9Q" type="_iFf2cM80EeCAFt3T7kTr9Q" direction="return">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ptgUMM81EeCAFt3T7kTr9Q" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ofTbsM81EeCAFt3T7kTr9Q"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iFf2cM80EeCAFt3T7kTr9Q" name="Asset">
+    <ownedAttribute xmi:id="_jtaPcM80EeCAFt3T7kTr9Q" name="assetId">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_rViecM80EeCAFt3T7kTr9Q" name="title">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_uVjS0M80EeCAFt3T7kTr9Q" name="summary">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_ccND8M86EeCAFt3T7kTr9Q" name="DuplicateInstanceException"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_oIed0M86EeCAFt3T7kTr9Q" name="InstanceNotFoundException"/>
+</uml:Model>

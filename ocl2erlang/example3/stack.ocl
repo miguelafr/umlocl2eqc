@@ -1,0 +1,10 @@
+context Stack::pop(): Integer
+pre notEmpty: isEmpty() = false
+post topElementReturned: result = top@pre()
+post elementRemoved: size() = size@pre() - 1
+ 
+context Stack::top(): Integer
+pre notEmpty: isEmpty() = false
+ 
+context Stack::push(o: Integer)
+post pushedObjectIsOnTop: top() = o

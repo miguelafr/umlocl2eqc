@@ -1,0 +1,33 @@
+context Scheduler
+
+inv: (ready->intersection(waiting))->isEmpty() and
+        not ((ready->union(waiting))->includes(active)) and
+        (active = null implies ready->isEmpty())
+        
+--Operations
+context Scheduler::Init()
+post: (ready->union(waiting)) = Set{} and active = null
+
+context Scheduler::New(p:Process)
+pre: p <> active and not (ready->union(waiting))->includes(p)
+post: waiting = (waiting@pre->including(p)) and
+        ready = ready@pre and active = active@pre
+                
+context Scheduler::Ready(p:Process)
+pre: waiting->includes(p)
+post: waiting = waiting@pre->excluding(p) and
+        if active@pre = null then
+            (ready = ready@pre and active = p)
+        else
+            (ready = ready@pre->including(p) and active = active@pre)
+        endif
+        
+context Scheduler::Swap()
+pre: active <> null
+post: if ready@pre->isEmpty() then
+            (active = null and ready = Set{})
+        else (
+            ready@pre->includes(active) and
+                    ready = ready@pre->excluding(active))
+        endif
+        and waiting = waiting@pre->including(active@pre)

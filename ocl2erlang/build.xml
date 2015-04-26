@@ -1,0 +1,45 @@
+
+<project>
+
+    <property name="lib.dir" value="lib"/>
+    <property name="plugins.dir" value="plugins"/>
+    <property name="main-class"  value="ToErlang"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <fileset dir="${plugins.dir}" includes="**/*.jar"/>
+        <fileset dir="bin" includes="**/*.class"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="bin"/>
+        <javac srcdir="src" destdir="bin" classpathref="classpath" />
+    </target>
+
+    <target name="run" depends="compile">
+        <java fork="true" failonerror="yes"
+                classname="${main-class}" classpath="bin"
+                classpathref="classpath">  
+        	<!--
+        	<arg line="example1/scheduler.uml example1/scheduler.ocl"/>
+        	-->
+                <!--
+        	<arg line="example2/bahamas.uml example2/bahamas.ocl"/>
+                -->
+        	<!--
+        	<arg line="example3/stack.uml example3/stack.ocl"/>
+        	-->
+                        	
+        	<arg line="example4/mathUtils.uml example4/mathUtils.ocl"/>
+        	
+                <!--
+                <arg line="example5/lists.uml example5/lists.ocl"/>
+                -->
+        </java>
+    </target>
+
+</project>
