@@ -6,7 +6,8 @@ inv: (ready->intersection(waiting))->isEmpty() and
         
 --Operations
 context Scheduler::Init()
-post: (ready->union(waiting)) = Set{} and active = null
+-- post: (ready->union(waiting)) = Set{} and active = null
+post: ready = Set{} and waiting = Set{} and active = null
 
 context Scheduler::New(p:Process)
 pre: p <> active and not (ready->union(waiting))->includes(p)

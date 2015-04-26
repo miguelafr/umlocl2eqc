@@ -15,6 +15,7 @@
     <ownedOperation xmi:id="_vP9D8K1mEeCXWKG3D3fFog" name="Init"/>
     <ownedOperation xmi:id="_xc5coK1mEeCXWKG3D3fFog" name="New">
       <ownedParameter xmi:id="_3x_rkK1oEeCXWKG3D3fFog" name="p" type="_6WAyYK1mEeCXWKG3D3fFog"/>
+      <ownedParameter xmi:id="_1ZJpwPhQEeGfHLhAB1Ye3A" direction="return"/>
     </ownedOperation>
     <ownedOperation xmi:id="_zfniUK1mEeCXWKG3D3fFog" name="Ready">
       <ownedParameter xmi:id="_VeLyMK1qEeCXWKG3D3fFog" name="p" type="_6WAyYK1mEeCXWKG3D3fFog"/>
