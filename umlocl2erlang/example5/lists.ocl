@@ -14,9 +14,14 @@ post prod: result = l-> iterate(x : Item; acc : Integer = 1 | acc * x.value)
 
 context ListUtils::min(l: Sequence(Item)): Integer
 pre not_empty: l->notEmpty()
-post min: l->forAll(x : Item | result <= x.value)
+post min: l->forAll(x : Item | result <= x.value) and l->select(value = result)->notEmpty()
 
 context ListUtils::max(l: Sequence(Item)): Integer
 pre not_empty: l->notEmpty()
-post max: l->forAll(x : Item | result >= x.value)
+post max: l->forAll(x : Item | result >= x.value) and l->select(value = result)->notEmpty()
+
+context ListUtils::max_int(l: Sequence(Integer)): Integer
+pre not_empty: l->notEmpty()
+post max: l->forAll(x : Integer | result >= x) and
+            l->includes(result)
 

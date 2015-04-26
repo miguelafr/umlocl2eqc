@@ -59,6 +59,16 @@
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       </ownedParameter>
     </ownedOperation>
+    <ownedOperation xmi:id="_kTuH4PuHEeG5l8QRyZ2rjQ" name="max_int">
+      <ownedParameter xmi:id="_wkIJkPuHEeG5l8QRyZ2rjQ" name="" direction="return">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_xjR5cPuHEeG5l8QRyZ2rjQ" name="l" isOrdered="true" isUnique="false">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_04ED8PuHEeG5l8QRyZ2rjQ" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1V5PcPuHEeG5l8QRyZ2rjQ"/>
+      </ownedParameter>
+    </ownedOperation>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_CJXZgMuGEeGCHdrhbP_k8A" name="Item">
     <ownedAttribute xmi:id="_H3hPIMuGEeGCHdrhbP_k8A" name="id">
