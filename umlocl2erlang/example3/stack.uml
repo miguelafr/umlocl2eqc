@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_i4xr4a1mEeCXWKG3D3fFog">
   <packagedElement xmi:type="uml:Class" xmi:id="_pDm2cK1mEeCXWKG3D3fFog" name="Stack">
-    <ownedAttribute xmi:id="_b9sAQBIHEeGnPNrC7DAgGg" name="x">
-      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
-    </ownedAttribute>
     <ownedOperation xmi:id="_vP9D8K1mEeCXWKG3D3fFog" name="pop">
       <ownedParameter xmi:id="_EYqsMBIGEeGnPNrC7DAgGg" direction="return">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
