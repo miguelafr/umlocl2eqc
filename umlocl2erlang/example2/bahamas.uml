@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_i4xr4a1mEeCXWKG3D3fFog">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_i4xr4a1mEeCXWKG3D3fFog">
   <packagedElement xmi:type="uml:Class" xmi:id="_bX5WAM80EeCAFt3T7kTr9Q" name="AssetFacade">
     <ownedAttribute xmi:id="_2DvJsM84EeCAFt3T7kTr9Q" name="assets" type="_iFf2cM80EeCAFt3T7kTr9Q">
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6R3-EM84EeCAFt3T7kTr9Q" value="*"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_409UIM84EeCAFt3T7kTr9Q"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6R3-EM84EeCAFt3T7kTr9Q" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_NcjCIIqfEeSIQ84Y-hBcUQ" name="started">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Rq548IqfEeSIQ84Y-hBcUQ" name="validURL">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_VGq1MIqfEeSIQ84Y-hBcUQ" name="validLogin">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Boolean"/>
     </ownedAttribute>
     <ownedOperation xmi:id="_1sgSQM80EeCAFt3T7kTr9Q" name="create">
       <ownedParameter xmi:id="_33lpwM80EeCAFt3T7kTr9Q" name="asset" type="_iFf2cM80EeCAFt3T7kTr9Q"/>
@@ -15,8 +24,8 @@
     </ownedOperation>
     <ownedOperation xmi:id="_bGnjUM81EeCAFt3T7kTr9Q" name="findAllAssets">
       <ownedParameter xmi:id="_nvK_QM81EeCAFt3T7kTr9Q" type="_iFf2cM80EeCAFt3T7kTr9Q" direction="return">
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ptgUMM81EeCAFt3T7kTr9Q" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ofTbsM81EeCAFt3T7kTr9Q"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ptgUMM81EeCAFt3T7kTr9Q" value="*"/>
       </ownedParameter>
     </ownedOperation>
   </packagedElement>
@@ -30,7 +39,25 @@
     <ownedAttribute xmi:id="_uVjS0M80EeCAFt3T7kTr9Q" name="summary">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#String"/>
     </ownedAttribute>
+    <ownedAttribute xmi:id="_QvrcsIokEeSGMIL8u9DARQ" name="creationDate">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#UnlimitedNatural"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_3_mY0IokEeSGMIL8u9DARQ" name="runtime" type="_sePOcIokEeSGMIL8u9DARQ"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_ccND8M86EeCAFt3T7kTr9Q" name="DuplicateInstanceException"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_oIed0M86EeCAFt3T7kTr9Q" name="InstanceNotFoundException"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_sePOcIokEeSGMIL8u9DARQ" name="Runtime">
+    <ownedAttribute xmi:id="_uTeRwIokEeSGMIL8u9DARQ" name="hours">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#UnlimitedNatural"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_yikIYIokEeSGMIL8u9DARQ" name="minutes">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#UnlimitedNatural"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_1AUkQIokEeSGMIL8u9DARQ" name="seconds">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_METAMODELS/UML.metamodel.uml#UnlimitedNatural"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_eg7aEIqoEeSIQ84Y-hBcUQ" name="ConnectionErrorException"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_wa2B8IqoEeSIQ84Y-hBcUQ" name="NotStartedException"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_5oIQ4IqoEeSIQ84Y-hBcUQ" name="AuthenticationErrorException"/>
 </uml:Model>
