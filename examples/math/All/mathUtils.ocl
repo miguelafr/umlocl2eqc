@@ -1,0 +1,13 @@
+context MathUtils::add(a: Integer, b: Integer): Integer
+post: result = a + b
+
+context MathUtils::mult(a: Integer, b: Integer): Integer
+post: result = a * b
+
+context MathUtils::division(a: Integer, b: Integer): Integer
+pre: b <> 0
+post: result = a.div(b)
+
+context MathUtils::pow(a: Integer, b: UnlimitedNatural): Integer
+post: result = Sequence{1..b}->
+    iterate(i : Integer; acc : Integer = 1 | acc*a)

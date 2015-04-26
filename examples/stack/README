@@ -1,0 +1,64 @@
+================================================================================
+= Descripción
+================================================================================
+Ejemplo de prueba de una pila. El ejemplo usa el operador "@pre" en las
+postcondiciones especificadas en OCL, por lo que se genera una máquina de
+estados. En este caso el operador "@pre" no se usa sobre atributos, sino sobre
+operaciones.
+
+Para ejecutarlo:
+
+eqc:quickcheck(eqc_test:test()).
+
+--------------------------------------------------------------------------------
+- Estado
+--------------------------------------------------------------------------------
+El estado está compuesto por aquellas variables en las que se use el operador
+"@pre", en este caso, las funciones "top" y "size". Además, también se deben
+almacenar en el estado aquellas llamadas a funciones que se realicen en las
+precondiciones ("isEmpty").
+
+--------------------------------------------------------------------------------
+- Estado inicial
+--------------------------------------------------------------------------------
+El estado inicial se obtiene preguntando al SUT/adaptador cual es el estado
+inicial, puesto que no es posible conocerlo con la especificación OCL ni el
+diagrama UML. Sin embargo, en este caso, como el estado está formado por
+llamadas a funciones, no es posible obtener el estado inicial en cualquier
+momento puesto que puede haber funciones que no sea posible ejecutar en
+un momento determinado. Por ejemplo, no es posible ejecutar la operación "top"
+si la pila está vacía.
+
+--------------------------------------------------------------------------------
+- Precondiciones
+--------------------------------------------------------------------------------
+Las precondiciones usadas en este caso son precondiciones dinámicas, puesto que
+no es posible conocer el valor de las variables de estado después de cada
+ejecución de cada función a probar, por lo que se deben usar valores simbólicos
+en las funciones "next_state", y las precondiciones deberían usar dichos valores
+simbólicos. En resumen, las precondiciones deben ser comprobadas en el momento
+de ejecución de las pruebas.
+
+--------------------------------------------------------------------------------
+- Postcondiciones
+--------------------------------------------------------------------------------
+Las postcondiciones de la máquina de estado están adaptadas para que reciban
+como párametro:
+- El estado anterior a que se ejecute la función
+- El estado siguiente a que se ejecute la función
+- La función que se ejecutó
+- El resultado de la función que se ejecutó
+- El estado anterior calculado dinámicamente antes de ejecutar la función
+- El estado siguiente calculado dinámicamente después de ejecutar la función
+
+El estado anterior calculado dinámicamente antes de ejecutar la función se 
+calcula en los wrappers de las funciones a probar obteniendo el valor de
+aquellas variables de estado de las cuales se requira obtener su valor antes
+de ejecutar la función a probar en las postcondiciones. En este caso, únicamente
+se requiren los valores de "top" y "size" en la función "pop".
+
+El estado siguiente calculado dinámicamente después de ejecutar la función está
+formado por aquellas variables de estado de las que se requiera su valor en
+las precondiciones ("isEmpty"), o se requiera su valor después de ejecutar la
+función las postcondiciones, por ejemplo, "size" en la función "pop".
+

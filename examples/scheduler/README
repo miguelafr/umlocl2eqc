@@ -1,0 +1,107 @@
+================================================================================
+= Descripción
+================================================================================
+Ejemplo de prueba de un scheduler. El ejemplo usa el operador "@pre" en las
+postcondiciones especificadas en OCL, por lo que se genera una máquina de
+estados.
+
+Para ejecutarlo:
+
+scheduler:start().
+eqc:quickcheck(eqc_test:test()).
+
+--------------------------------------------------------------------------------
+- Estado
+--------------------------------------------------------------------------------
+El estado está compuesto por aquellas variables en las que se use el operador
+"@pre", en este caso, los procesos "active", "ready" y "waiting".
+
+Además, la máquina de estados supone que existe una función en el SUT/adaptador
+con nombre "get_<propiedad>" que se encarga de obtener los datos de la propiedad
+"<propiedad>" del estado, en este caso "get_active", "get_ready" y "get_waiting".
+
+--------------------------------------------------------------------------------
+- Estado inicial
+--------------------------------------------------------------------------------
+El estado inicial se obtiene preguntando al SUT/adaptador cual es el estado
+inicial, puesto que no es posible conocerlo con la especificación OCL ni el
+diagrama UML.
+
+No está bien suponer que el estado inicial sean listas vacías o valores a 
+"undefined" puesto que es posible que no lo sea.
+
+--------------------------------------------------------------------------------
+- Precondiciones
+--------------------------------------------------------------------------------
+Las precondiciones usadas en este caso son precondiciones dinámicas, puesto que
+no es posible conocer el valor de las variables de estado después de cada
+ejecución de cada función a probar, en concreto el valor de "active" después de
+ejecutar la función "swap", por lo que se deben usar valores simbólicos
+en las funciones "next_state", y las precondiciones deberían usar dichos valores
+simbólicos. En resumen, las precondiciones deben ser comprobadas en el momento
+de ejecución de las pruebas.
+
+--------------------------------------------------------------------------------
+- Postcondiciones
+--------------------------------------------------------------------------------
+Las postcondiciones de la máquina de estado están adaptadas para que reciban
+como párametro:
+- El estado anterior a que se ejecute la función
+- El estado siguiente a que se ejecute la función
+- La función que se ejecutó
+- El resultado de la función que se ejecutó
+- El estado anterior calculado dinámicamente antes de ejecutar la función
+- El estado siguiente calculado dinámicamente después de ejecutar la función
+
+En este caso, el estado anterior calculado dinámicamente antes de ejecutar la
+función no es necesario. Por su parte, el estado dinámico posterior se usa
+para rellenar los valores de las variables de estado en la función "next_state".
+
+--------------------------------------------------------------------------------
+- Estado siguiente
+--------------------------------------------------------------------------------
+Las funciones "next_state" se generan utilizando las postcondiciones e
+invariantes.
+
+En este caso, se ha detectado que no es posible obtener el valor de la variable
+de estado "active" después de ejecutar la operación "swap", por lo que su valor
+debe ser obtenido después de ejecutar dicha operación, transformándose así en
+un valor simbólico.
+
+Esto implica que las operaciones en las que se esté involucrada la variable
+"active" puede que no se realicen correctamente. Por ejemplo, en la
+postcondición de la operación "swap" se dice que "ready" es igual al "ready"
+anterior excluyendo el siguiente "active". Si "active" es simbólico, y "ready"
+contiene valores reales, esta operación no se podrá realizar correctamente, por
+lo que la máquina de estados supondrá que "ready" también es simbólico.
+Finalmente, por algo similar, "waiting" también contendrá un valor simbólico.
+
+De esta forma, la función "next_state" siempre calculará los valores de todas
+variables de estado usando el resultado de la operación ejecutada.
+
+--------------------------------------------------------------------------------
+- Generadores
+--------------------------------------------------------------------------------
+Los datos que se manejan son de tipo "Process", por lo que se usa un generador
+específico para ellos:
+
+gen_process() ->
+    {process, [{id, ocl_gen:gen_integer()}]}.
+
+La forma de construir el generador consiste en una tupla donde el primer
+elemento es el nombre de la clase, y el segundo elemento una lista de tuplas con
+los atributos definidos en el diagrama de clases.
+
+Para acceder a las propiedades de una instancia de esta clase, se usa la función:
+
+get_property(PropertyName, Variable) ->
+    proplists:get_value(PropertyName, erlang:element(2, Variable)).
+
+definida en el módulo "ocl_datatypes".
+
+--------------------------------------------------------------------------------
+- Bugs conocidos
+--------------------------------------------------------------------------------
+- La función "next_state" de "ready" está mal, si "active" es simbólico no se
+  pueden realizar comparaciones con ella, aunque en este caso concreto funciona.
+- No se comprueban las invariantes.

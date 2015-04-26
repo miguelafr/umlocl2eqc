@@ -1,0 +1,30 @@
+================================================================================
+= Descripción
+================================================================================
+Ejemplo de prueba de librería matemática que maneja números enteros. Al ser una
+librería sin estado (no existe el operador "@pre" en la especificación OCL), no
+se genera una  máquina de estados, sino propiedades aisladas.
+
+Para ejecutar el ejemplo:
+
+eqc_test:test().
+
+--------------------------------------------------------------------------------
+- Postcondiciones
+--------------------------------------------------------------------------------
+Cada postcondición da lugar a una propiedad, la cual tiene como nombre:
+"prop_<nombre_postcondición>"
+
+--------------------------------------------------------------------------------
+- Precondiciones
+--------------------------------------------------------------------------------
+Las precondiciones se usan en las propiedades para filtrar parámetros no válidos.
+Para ello se usa el operador "?SUCHTHAT"
+
+--------------------------------------------------------------------------------
+- Iteradores
+--------------------------------------------------------------------------------
+Se crean funciones específicas para los distintos iteradores OCL, en este caso:
+"iterate". En este caso, se usan las funciones del módulo "ocl_seq" porque el
+tipo de dato tratado es una "Sequence" (lista ordenada que permite elementos
+repetidos). 

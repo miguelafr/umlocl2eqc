@@ -1,0 +1,18 @@
+context AssetFacade::create(asset:Asset)
+post: if (self.assets@pre -> select(a | a.assetId = asset.assetId) -> size() > 0) then
+          self.assets = self.assets@pre and result.oclIsTypeOf(DuplicateInstanceException)
+      else
+          self.assets = self.assets@pre->including(asset)
+      endif
+
+context AssetFacade::delete(assetId:String)
+post: if (self.assets@pre -> select(a | a.assetId = assetId) -> size() > 0) then
+          self.assets = self.assets@pre -> select(asset | asset.assetId <> assetId) and
+            self.assets -> select(asset | asset.assetId = assetId) -> size() = 0
+      else
+          self.assets = self.assets@pre and result.oclIsTypeOf(InstanceNotFoundException)
+      endif
+
+context AssetFacade::findAllAssets()
+post: self.assets = self.assets@pre and result = self.assets
+

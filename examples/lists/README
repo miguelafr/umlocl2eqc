@@ -1,0 +1,50 @@
+================================================================================
+= Descripción
+================================================================================
+Ejemplo de prueba de librería de manejo de listas. Al ser una librería sin
+estado (no existe el operador "@pre" en la especificación OCL), no se genera una 
+máquina de estados, sino propiedades aisladas.
+
+Para ejecutar el ejemplo:
+
+eqc_test:test().
+
+--------------------------------------------------------------------------------
+- Postcondiciones
+--------------------------------------------------------------------------------
+Cada postcondición da lugar a una propiedad, la cual tiene como nombre:
+"prop_<nombre_postcondición>"
+
+--------------------------------------------------------------------------------
+- Precondiciones
+--------------------------------------------------------------------------------
+Las precondiciones se usan en las propiedades para filtrar parámetros no válidos.
+Para ello se usa el operador "?SUCHTHAT"
+
+--------------------------------------------------------------------------------
+- Generadores
+--------------------------------------------------------------------------------
+Las listas se componen de objetos de la clase "Item", por lo que se utiliza un
+generador específico para este tipo de objetos.
+
+gen_item() ->
+    {item, [{id, ocl_gen:gen_integer()}, {value, ocl_gen:gen_integer()}]}.
+
+La forma de construir el generador consiste en una tupla donde el primer
+elemento es el nombre de la clase, y el segundo elemento una lista de tuplas con
+los atributos definidos en el diagrama de clases.
+
+Para acceder a las propiedades de una instancia de esta clase, se usa la función:
+
+get_property(PropertyName, Variable) ->
+    proplists:get_value(PropertyName, erlang:element(2, Variable)).
+
+definida en el módulo "ocl_datatypes".
+
+--------------------------------------------------------------------------------
+- Iteradores
+--------------------------------------------------------------------------------
+Se crean funciones específicas para los distintos iteradores OCL, en este caso:
+"iterate" y "forAll". En este caso, se usan las funciones del módulo "ocl_seq"
+porque el tipo de dato tratado es una "Sequence" (lista ordenada que permite
+elementos repetidos). 

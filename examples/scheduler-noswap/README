@@ -1,0 +1,27 @@
+================================================================================
+= Descripción
+================================================================================
+Este ejemplo es exáctamente igual al del scheduler pero eliminando la función
+"swap". Como ahora ya es posible conocer el valor de todas las variables de
+estado después de ejecutar cada función, ya no es necesario usar valores
+simbólicos ni precondiciones dinámicas.
+
+--------------------------------------------------------------------------------
+- Bugs conocidos
+--------------------------------------------------------------------------------
+- No se comprueban las invariantes.
+- Es necesario inicializar el SUT antes de ejecutar el test, es decir, la
+  función test debería ser algo así:
+
+    test() ->
+        scheduler:init(),
+        ?FORALL(Cmds, commands(?MODULE),
+            begin
+                scheduler:init(),
+                {H, PreState, Res} = run_commands(?MODULE, Cmds),
+                ?WHENFAIL(io:format("H: ~p\nPreState: ~p\nRes: ~p\n", [H, PreState, Res]),
+                    aggregate(command_names(Cmds), Res==ok))
+            end).
+
+  Si no se hace así no funciona. Esto implica que debemos suponer que el
+  SUT/adaptador debe tener una función de inicialización.

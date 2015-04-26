@@ -1,0 +1,22 @@
+context ListUtils::add(e: Item, l: Sequence(Item)): Sequence(Item)
+post element_added: result->includes(e)
+post longer_list: result->size() = l->size() + 1
+
+context ListUtils::delete(e: Item, l: Sequence(Item)): Sequence(Item)
+post element_deleted: not result->includes(e)
+post smaller_list: l->includes(e) implies result->size() < l->size()
+
+context ListUtils::sum(l: Sequence(Item)): Integer
+post sum: result = l -> iterate(x : Item; acc : Integer = 0 | acc + x.value)
+
+context ListUtils::prod(l: Sequence(Item)): Integer
+post prod: result = l-> iterate(x : Item; acc : Integer = 1 | acc * x.value)
+
+context ListUtils::min(l: Sequence(Item)): Integer
+pre not_empty: l->notEmpty()
+post min: l->forAll(x : Item | result <= x.value)
+
+context ListUtils::max(l: Sequence(Item)): Integer
+pre not_empty: l->notEmpty()
+post max: l->forAll(x : Item | result >= x.value)
+
