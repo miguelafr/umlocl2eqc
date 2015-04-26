@@ -4,7 +4,7 @@
 
 %% API
 -export([gen_integer/0, gen_unlimitednatural/0, gen_sequence_integer/0,
-         gen_sequence/1]).
+         gen_sequence/1, gen_string/0]).
 
 %%====================================================================
 %% API
@@ -32,3 +32,9 @@ gen_sequence(G) ->
 %%--------------------------------------------------------------------
 gen_sequence_integer() ->
     gen_sequence(eqc_gen:int()).
+
+%%--------------------------------------------------------------------
+%% generator: string
+%%--------------------------------------------------------------------
+gen_string() ->
+    gen_sequence(eqc_gen:char()).
